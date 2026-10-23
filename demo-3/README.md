@@ -2,6 +2,8 @@
 
 This demo shows how to install the Headlamp dashboard with the Kubescape plugin to visualize security scan results in a UI.
 
+![](../img/demo3_setup.png)
+
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/engine/install/)
@@ -59,7 +61,7 @@ helm repo add headlamp https://kubernetes-sigs.github.io/headlamp/
 helm repo update
 ```
 
-Install Headlamp with the Kubescape plugin:
+Install Headlamp with the **Kubescape plugin**:
 
 ```bash
 helm install my-headlamp headlamp/headlamp \
@@ -67,6 +69,9 @@ helm install my-headlamp headlamp/headlamp \
   --create-namespace \
   -f headlamp/values.yaml
 ```
+
+**NOTE**  
+Kubescape Headlamp plugin installed via this image: `quay.io/kubescape/headlamp-plugin:v0.11.2`
 
 Wait for Headlamp to be ready:
 
