@@ -1,0 +1,11 @@
+clusterName: kubescape-headlamp-demo
+
+capabilities:
+  configurationScan: enable
+  vulnerabilityScan: enable
+  nodeScan: enable
+  continuousScan: enable
+  networkPolicyService: enable
+
+scheduler:
+  scanSchedule: "0 0 * * *"

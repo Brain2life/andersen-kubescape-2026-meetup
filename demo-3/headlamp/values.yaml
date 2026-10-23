@@ -1,0 +1,25 @@
+replicaCount: 1
+
+config:
+  pluginsDir: /build/plugins
+
+# For more information, see
+# https://github.com/kubescape/headlamp-plugin/blob/main/examples/headlamp-helm-values.yaml
+initContainers:
+  - name: kubescape-plugin
+    image: quay.io/kubescape/headlamp-plugin:v0.11.2
+    command:
+      - /bin/sh
+      - '-c'
+      - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/
+    volumeMounts:
+      - name: headlamp-plugins
+        mountPath: /build/plugins
+
+volumeMounts:
+  - name: headlamp-plugins
+    mountPath: /build/plugins
+
+volumes:
+  - name: headlamp-plugins
+    emptyDir: {}

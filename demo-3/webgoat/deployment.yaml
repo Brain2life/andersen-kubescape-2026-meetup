@@ -1,0 +1,37 @@
+# OWASP WebGoat - a deliberately insecure Java (Spring Boot) application
+# used here only as a scan target, so Kubescape has real CVEs to report.
+# No Service/Ingress on purpose: the app is never exposed outside the pod.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webgoat
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webgoat
+  namespace: webgoat
+  labels:
+    app: webgoat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webgoat
+  template:
+    metadata:
+      labels:
+        app: webgoat
+    spec:
+      containers:
+        - name: webgoat
+          # Older tag pinned on purpose: outdated dependencies -> more findings
+          image: webgoat/webgoat:v2023.4
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              memory: 1Gi
