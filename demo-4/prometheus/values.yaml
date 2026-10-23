@@ -1,0 +1,15 @@
+grafana:
+  adminPassword: admin
+
+prometheus:
+  prometheusSpec:
+    # Allow Prometheus to discover ServiceMonitors from all namespaces,
+    # including the kubescape namespace.
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+    additionalScrapeConfigs:
+      - job_name: kubescape
+        scrape_interval: 60s
+        static_configs:
+          - targets:
+              - prometheus-exporter.kubescape.svc.cluster.local:8080

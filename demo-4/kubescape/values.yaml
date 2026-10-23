@@ -1,0 +1,10 @@
+clusterName: kubescape-metrics-demo
+
+capabilities:
+  configurationScan: enable
+  vulnerabilityScan: enable
+  nodeScan: enable
+  prometheusExporter: enable
+
+scheduler:
+  scanSchedule: "0 0 * * *"
