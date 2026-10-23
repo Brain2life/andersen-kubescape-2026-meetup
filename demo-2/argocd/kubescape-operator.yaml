@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubescape-operator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://kubescape.github.io/helm-charts/
+    chart: kubescape-operator
+    targetRevision: "*"
+    helm:
+      values: |
+        clusterName: kubescape-operator-demo
+
+        # Self-hosted mode — no ARMO account or access key needed.
+        # Scan results are stored as CRDs inside the cluster.
+
+        operator:
+          triggerNewImageScan: true
+
+        scheduler:
+          # Run a full scan every day at midnight
+          scanSchedule: "0 0 * * *"
+
+        capabilities:
+          configurationScan: enable
+          vulnerabilityScan: enable
+          nodeScan: enable
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubescape
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
