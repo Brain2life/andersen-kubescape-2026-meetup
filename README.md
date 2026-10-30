@@ -2,8 +2,7 @@
 
 Presentation and practice materials from Andersen's ["Securing Kubernetes Cluster with Kubescape"](https://www.youtube.com/live/McISipEuznw) meetup talk 
 
-Please leave your feedback here 👇
-
+Please leave your feedback here 👇  
 [https://qrfy.io/zP3xffYLnD](https://qrfy.io/zP3xffYLnD)
 
 ## Content
